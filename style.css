@@ -1,0 +1,526 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(145deg, #f7f3f0 0%, #e8e2dc 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+  padding: 1.5rem;
+}
+
+/* Main container with glassmorphism */
+.card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 2.5rem 2.5rem 2rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 20, 30, 0.08);
+  width: 100%;
+  max-width: 820px;
+  padding: 2rem 1.8rem 2.5rem;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Header with gradient and glow */
+.header {
+  background: linear-gradient(135deg, #0b2b3f 0%, #1b4a6b 100%);
+  border-radius: 2rem 2rem 1.5rem 1.5rem;
+  padding: 0.1rem 1.2rem 0.2rem;
+  margin-bottom: 1.8rem;
+  box-shadow: 0 6px 14px rgba(1, 22, 39, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -10%;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.header h2 {
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: #f6fafd;
+  padding: 0.7em 0.3em;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.header h2 span {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.1rem 0.8rem;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 0.2rem;
+  backdrop-filter: blur(2px);
+}
+
+/* Input row with glass effect */
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 1.2rem 1.2rem 1.2rem 1.5rem;
+  border-radius: 2.2rem;
+  margin-bottom: 2rem;
+  box-shadow: inset 0 1px 4px rgba(255,255,255,0.6), 0 4px 12px rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.inputbox {
+  flex: 1 1 180px;
+  position: relative;
+  padding-top: 0.5rem;
+}
+
+.numberbox {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.6rem 0.3rem 0.4rem;
+  border: none;
+  border-bottom: 2px solid #3b9e9a;
+  background: transparent;
+  outline: none;
+  color: #0b2b3f;
+  font-weight: 500;
+  transition: border-color 0.3s;
+}
+
+.numberbox:focus {
+  border-bottom-color: #f0724b;
+}
+
+.inputbox label {
+  position: absolute;
+  top: 0.2rem;
+  left: 0.2rem;
+  color: #1f6d7a;
+  font-weight: 450;
+  font-size: 0.85rem;
+  pointer-events: none;
+  transition: 0.25s ease;
+  opacity: 0.7;
+}
+
+.inputbox input:focus ~ label,
+.inputbox input:disabled ~ label,
+.inputbox input:valid ~ label {
+  top: -0.9rem;
+  font-size: 0.7rem;
+  opacity: 0.9;
+  color: #1a4b5e;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* Slider with custom styling */
+.slider-container {
+  flex: 2 1 220px;
+  position: relative;
+  padding: 0.2rem 0 0.8rem;
+}
+
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #d4d9d4 0%, #c0c9c0 100%);
+  outline: none;
+  transition: background 0.2s;
+  margin: 0.2rem 0;
+}
+
+.slider::after {
+  content: "🐢 slow";
+  position: absolute;
+  bottom: -8px;
+  left: 2px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #547e8a;
+  letter-spacing: 0.3px;
+}
+
+.slider::before {
+  content: "fast 🐇";
+  position: absolute;
+  bottom: -8px;
+  right: 2px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: #547e8a;
+  letter-spacing: 0.3px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #fe9e7a, #e55d3a);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(220, 80, 40, 0.3);
+  transition: 0.15s;
+  border: 2px solid #fef7f0;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  box-shadow: 0 6px 14px rgba(220, 80, 40, 0.4);
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle at 30% 30%, #fe9e7a, #e55d3a);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #fef7f0;
+  box-shadow: 0 4px 10px rgba(220, 80, 40, 0.3);
+}
+
+#progress-bar {
+  height: 6px;
+  background: linear-gradient(90deg, #f7b267, #f58a4c);
+  border-radius: 12px;
+  position: absolute;
+  top: 0.6rem;
+  left: 0;
+  width: 30%;
+  pointer-events: none;
+  box-shadow: 0 0 6px #f7b26766;
+  transition: width 0.1s;
+}
+
+/* Play button with gradient and animation */
+.play-button {
+  flex: 0 0 auto;
+  border: none;
+  outline: none;
+  background: linear-gradient(135deg, #f4729b, #d53b7a);
+  color: white;
+  padding: 0.6rem 1.8rem;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(200, 50, 100, 0.25);
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.play-button:hover {
+  transform: scale(1.02) translateY(-2px);
+  box-shadow: 0 12px 24px rgba(200, 50, 100, 0.35);
+  background: linear-gradient(135deg, #f584a8, #c43f72);
+}
+
+.play-button:active {
+  transform: scale(0.96);
+}
+
+/* Status message with glass effect */
+.queen-arrangement {
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 450;
+  color: #1f5f70;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px);
+  padding: 0.4rem 0.6rem;
+  border-radius: 40px;
+  margin: 1.2rem 0 0.8rem;
+  display: inline-block;
+  padding: 0.3rem 1.2rem;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.3);
+  letter-spacing: 0.2px;
+}
+
+/* Board container with flex layout */
+#n-queen-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem 1.8rem;
+  margin-top: 0.8rem;
+  padding: 0.5rem 0.2rem;
+}
+
+/* Individual board card with glassmorphism */
+#n-queen-board div {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 20px;
+  padding: 0.4rem 0.4rem 0.1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(255,255,255,0.4);
+  transition: all 0.2s;
+  border: 1px solid rgba(255,255,255,0.2);
+  animation: boardFade 0.5s ease-out;
+}
+
+/* Table styling */
+table {
+  border-collapse: collapse;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+}
+
+td {
+  width: 36px;
+  height: 36px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 400;
+  background: rgba(235, 241, 245, 0.3);
+  transition: 0.1s ease;
+}
+
+/* Chess-like pattern with gentle colors */
+td:nth-child(odd) {
+  background: rgba(215, 225, 235, 0.25);
+}
+
+tr:nth-child(even) td:nth-child(even) {
+  background: rgba(215, 225, 235, 0.25);
+}
+
+tr:nth-child(even) td:nth-child(odd) {
+  background: rgba(240, 246, 250, 0.15);
+}
+
+/* Queen icon with hover animation */
+td span {
+  display: inline-block;
+  transition: transform 0.2s ease;
+  font-size: 1.35rem;
+  filter: drop-shadow(0 2px 6px rgba(200, 100, 50, 0.15));
+}
+
+td span:hover {
+  transform: scale(1.25) rotate(4deg);
+}
+
+/* Board header */
+h4 {
+  background: linear-gradient(135deg, #0971a0, #0b5c84);
+  color: white;
+  font-weight: 450;
+  font-size: 0.85rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 30px;
+  margin: 0.2rem 0.2rem 0.3rem;
+  text-align: center;
+  letter-spacing: 0.5px;
+  box-shadow: inset 0 1px 4px rgba(255,255,255,0.3);
+}
+
+/* Footer note */
+.footer-note {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #4f6b78;
+  opacity: 0.7;
+  letter-spacing: 0.2px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 1.2rem;
+}
+
+/* Keyframe animation for board appearance */
+@keyframes boardFade {
+  0% { opacity: 0.5; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet and smaller screens */
+@media (max-width: 650px) {
+  .card {
+    padding: 1.2rem 0.8rem;
+    border-radius: 2rem;
+  }
+
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+    padding: 1rem;
+  }
+
+  .slider-container {
+    flex: 1 1 auto;
+  }
+
+  .play-button {
+    align-self: center;
+    width: 100%;
+    justify-content: center;
+    padding: 0.7rem;
+  }
+
+  .header h2 {
+    font-size: 1.4rem;
+    flex-wrap: wrap;
+  }
+
+  td {
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
+  }
+
+  #n-queen-board div {
+    padding: 0.2rem;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 450px) {
+  body {
+    padding: 0.8rem;
+  }
+
+  .card {
+    padding: 0.8rem 0.5rem;
+    border-radius: 1.5rem;
+  }
+
+  .header {
+    border-radius: 1.5rem 1.5rem 1rem 1rem;
+    padding: 0.1rem 0.8rem 0.2rem;
+  }
+
+  .header h2 {
+    font-size: 1.1rem;
+    padding: 0.5em 0.1em;
+  }
+
+  .header h2 span {
+    font-size: 0.7rem;
+    padding: 0.05rem 0.5rem;
+  }
+
+  .input-row {
+    padding: 0.8rem;
+    border-radius: 1.5rem;
+    gap: 0.6rem;
+  }
+
+  .inputbox {
+    flex: 1 1 100%;
+  }
+
+  .numberbox {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.2rem 0.3rem;
+  }
+
+  .slider-container {
+    padding: 0.1rem 0 0.6rem;
+  }
+
+  .slider::after,
+  .slider::before {
+    font-size: 0.6rem;
+  }
+
+  .play-button {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .queen-arrangement {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.8rem;
+    margin: 0.6rem 0;
+  }
+
+  td {
+    width: 22px;
+    height: 22px;
+    font-size: 0.8rem;
+  }
+
+  td span {
+    font-size: 0.9rem;
+  }
+
+  #n-queen-board {
+    gap: 0.8rem 1rem;
+    padding: 0.2rem 0;
+  }
+
+  #n-queen-board div {
+    border-radius: 14px;
+    padding: 0.2rem 0.2rem 0.05rem;
+  }
+
+  h4 {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: 20px;
+  }
+
+  .footer-note {
+    font-size: 0.65rem;
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 360px) {
+  td {
+    width: 18px;
+    height: 18px;
+    font-size: 0.6rem;
+  }
+
+  td span {
+    font-size: 0.7rem;
+  }
+
+  .header h2 {
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 0.5rem 0.3rem;
+  }
+}
