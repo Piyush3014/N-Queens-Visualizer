@@ -2,7 +2,7 @@
 
 An interactive web tool that visualizes the classic **N-Queens Puzzle** using a recursive backtracking algorithm. Watch how a computer searches through configurations, detects conflicts, and backtracks to find all valid arrangements on an $N \times N$ chessboard.
 
-🔗 **[Live Demo]( )** *(Replace with your actual deployment link)*
+🔗 **[Live Demo](https://n-queens-visualizer-js.netlify.app)** 
 
 ---
 
